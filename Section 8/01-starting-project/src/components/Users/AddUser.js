@@ -1,21 +1,21 @@
-import { useState, useRef } from "react";
-import Card from "../UI/Card";
+import { useState, useRef } from 'react';
+import Card from '../UI/Card';
+import Button from '../UI/Button';
 import classes from './AddUser.module.css';
-import Button from "../UI/Button";
-import ErrorModal from "../UI/ErrorModal";
-import Wrapper from "../Helpers/Wrapper";
+import ErrorModal from '../UI/ErrorModal';
+import Wrapper from '../Helpers/Wrapper';
 
-const AddUser = (props) => {
-    const nameInputRef = useRef();
-    const ageInputRef = useRef();
-    
+const AddUser = props => {
     // const [enteredUsername, setEnteredUsername] = useState('');
     // const [enteredAge, setEnteredAge] = useState('');
     const [error, setError] = useState();
-    
+
+    const nameInputRef = useRef();
+    const ageInputRef = useRef();
+
     const addUserHandler = (event) => {
         event.preventDefault();
-
+        console.log(nameInputRef)
         const enteredName = nameInputRef.current.value;
         const enteredUserAge = ageInputRef.current.value;
 
@@ -34,12 +34,13 @@ const AddUser = (props) => {
             });
             return;
         }
-        
+
+        // console.log(enteredUsername, enteredAge);
         props.onAddUser(enteredName, enteredUserAge);
+        // setEnteredAge('');
+        // setEnteredUsername('');
         nameInputRef.current.value = '';
         ageInputRef.current.value = '';
-        // setEnteredUsername('');
-        // setEnteredAge('');
     };
 
     // const usernameChangeHandler = (event) => {
